@@ -44,7 +44,14 @@ app.get('*', (req, res) => {
     res.send("<h1>Welcome to SkillSwap API</h1><p>Ensure you are on a mobile device with SkillSwap installed.</p>");
 });
 
-app.listen(PORT, () => {
-    console.log(`🚀 SkillSwap Deep Link Server is running on port ${PORT}`);
-    console.log(`🌐 Test routing at: http://localhost:${PORT}/profile/test_uid`);
-});
+// Only start the server if run directly (allows local testing)
+// Vercel Serverless instances will just import 'app' and handle routing internally.
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`🚀 SkillSwap Deep Link Server is running on port ${PORT}`);
+        console.log(`🌐 Test routing at: http://localhost:${PORT}/profile/test_uid`);
+    });
+}
+
+// Export the Express API for Vercel
+module.exports = app;

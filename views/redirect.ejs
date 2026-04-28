@@ -75,16 +75,26 @@
     </div>
 
     <script>
-        // Attempt automatic deep link transfer
+        // Forceful Deep Link Transfer Bypassing Web
         window.onload = function() {
-            // Wait 500ms to allow UI to render, then execute hardware intent
-            setTimeout(function() {
-                window.location.href = "<%= appLink %>";
-            }, 500);
-            
-            // Note: In production you'd use a universal App Link standard (Intent URLs).
-            // Example for Android intent fallback if not installed context:
-            // window.location.href = 'intent://profile/<%= locals.uid %>#Intent;scheme=skillswap;package=com.sas.skillswap;end';
+            var isAndroid = /Android/i.test(navigator.userAgent);
+            var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            var appLink = "<%= appLink %>"; // e.g. skillswap://profile/123
+
+            if (isAndroid) {
+                // Force Android to bypass Chrome and open the App directly via Package Intent
+                var intentPath = appLink.replace("skillswap://", "");
+                var intentUrl = "intent://" + intentPath + "#Intent;scheme=skillswap;package=com.sas.skillswap;end";
+                window.location.href = intentUrl;
+            } else if (isIOS) {
+                // iOS Universal Link Fallback
+                window.location.href = appLink;
+            } else {
+                // Desktop / other
+                setTimeout(function() {
+                    window.location.href = appLink;
+                }, 500);
+            }
         };
     </script>
 </body>

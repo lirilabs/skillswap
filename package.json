@@ -1,0 +1,14 @@
+{
+  "name": "skillswap-backend",
+  "version": "1.0.0",
+  "description": "Backend deep link redirector and metadata generator for SkillSwap",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  }
+}

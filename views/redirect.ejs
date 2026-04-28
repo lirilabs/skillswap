@@ -71,7 +71,7 @@
         <p>If you have the SkillSwap app installed, you will be redirected automatically within a few seconds.</p>
         
         <!-- Fallback button if auto-redirect fails -->
-        <a href="<%= appLink %>" class="btn">Open App Manually</a>
+        <a id="manualBtn" href="<%= appLink %>" class="btn">Open SkillSwap</a>
     </div>
 
     <script>
@@ -85,6 +85,10 @@
                 // Force Android to bypass Chrome and open the App directly via Package Intent
                 var intentPath = appLink.replace("skillswap://", "");
                 var intentUrl = "intent://" + intentPath + "#Intent;scheme=skillswap;package=com.sas.skillswap;end";
+                
+                // Update manual button just in case
+                document.getElementById('manualBtn').href = intentUrl;
+                
                 window.location.href = intentUrl;
             } else if (isIOS) {
                 // iOS Universal Link Fallback

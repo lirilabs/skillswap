@@ -5,8 +5,7 @@
       "namespace": "android_app",
       "package_name": "com.sas.skillswap",
       "sha256_cert_fingerprints": [
-        "REPLACE_WITH_YOUR_DEBUG_SHA256",
-        "REPLACE_WITH_YOUR_RELEASE_SHA256"
+        "DF:18:0D:EE:60:DA:22:68:DA:DB:F0:85:0A:D3:BC:93:92:35:BB:8F:A5:DC:4B:BD:5E:C7:1B:74:1F:E1:01:22"
       ]
     }
   }
